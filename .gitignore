@@ -1,0 +1,12 @@
+
+*.properties
+
+*.class
+.classpath
+.project
+target/classes/mapper/*.xml
+target/classes/*.xml
+target/classes/*.properties
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
