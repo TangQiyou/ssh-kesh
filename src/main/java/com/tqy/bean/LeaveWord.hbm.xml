@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 9:54:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tqy.bean.LeaveWord" table="LeaveWord">
+        <id name="leaveId" type="int">
+            <column name="leaveId" />
+            <generator class="identity" />
+        </id>
+        <property name="leaveTitle" type="java.lang.String">
+            <column name="leaveTitle" />
+        </property>
+        <property name="leaveContent" type="java.lang.String">
+            <column name="leaveContent" />
+        </property>
+        <property name="leaveTime" type="java.lang.String">
+            <column name="leaveTime" />
+        </property>
+        <many-to-one name="leaveUser" class="com.tqy.bean.User">
+            <column name="leaveUserId" />
+        </many-to-one>
+        <property name="isResponsed" type="int">
+            <column name="isResponsed" />
+        </property>
+    </class>
+</hibernate-mapping>

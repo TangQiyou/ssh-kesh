@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- 
+        package: 包，struts2使用package来组织模块.
+        name 属性：必须，用于其他的包引用当前包，都写com好了
+        extends: 当前包继承哪个包，继承的，即可以继承其中的所有配置，通常情况下继承struts-default,由于要用json，再继承一下json-default
+        namespace：和url中的第一部分相对应
+        action: 和url中的第二部分相对应
+        class: action的位置
+        method：调用action中的方法
+     -->
+   <package name="com" extends="struts-default,json-default" namespace="/web">
+       <action name="userLogin" class="com.tqy.actions.web.TqyUserAction" method="userLogin">
+            <result type="json"> <!-- type要为json -->
+                <param name="root">result</param><!-- name="root"不能变，这里返回的result需要和action中返回的map名字一样 -->
+            </result>
+       </action>
+   </package>
+
+</struts>

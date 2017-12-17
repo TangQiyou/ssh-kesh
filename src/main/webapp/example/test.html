@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>testPage</title>
+</head>
+<body>
+	<button id="testButton">测试</button><br>
+
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	    $("#testButton").click(function(){
+	        var jsonData = {
+	                "user.userAccount" : "aaa",
+	                "user.userPwd" : "df"
+	            };
+	        $.ajax({
+	            type : "post",
+	            url : "../web/userLogin",
+	            dataType : "json",
+	            //contentType : "application/json;charser=utf-8",
+	            //data:JSON.stringify(jsonData),
+	            data:jsonData,
+	            success : function(data) {
+	            	//data = JSON.parse(data);
+	                alert(data.code);
+	                alert(data.msg);
+	            }
+	        });
+	    });
+    </script>
+</body>
+</html>

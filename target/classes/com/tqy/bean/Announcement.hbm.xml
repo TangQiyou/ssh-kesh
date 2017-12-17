@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 9:54:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tqy.bean.Announcement" table="Announcement">
+        <id name="annId" type="int">
+            <column name="annId" />
+            <generator class="identity" />
+        </id>
+        <property name="annTitle" type="java.lang.String">
+            <column name="annTitle" />
+        </property>
+        <property name="annContent" type="java.lang.String">
+            <column name="annContent" />
+        </property>
+        <property name="annTime" type="java.lang.String">
+            <column name="annTime" />
+        </property>
+    </class>
+</hibernate-mapping>

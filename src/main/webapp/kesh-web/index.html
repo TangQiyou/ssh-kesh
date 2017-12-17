@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>可视化管理系统</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="jquery/jquery.datetimepicker.css">
+	<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<style type="text/css">
+	* {padding: 0;margin:0;font-family: "Microsoft Yahei";}
+	a,button,input,select{ 
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+		outline: none;}
+	
+	
+</style>
+<body>
+<div id="header">
+	<div class="logo-wrap">
+		<div class="kesh"><a href="index.html">数据可视化</a></div>
+		<div class="header-navbar">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="announcement.html?annId=more">公告</a></li>
+				<li><a onclick="checkCookie(this)">个人</a></li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="#" class="cancel">注销</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="header-container" style="background-image: url(img/index-back.jpg)">
+	<div class="header-wrap">
+		<div class="data-time">
+			<input type="text" name='data-time' class="datetimepicker" id="datetimepicker" placeholder="请选择时间" />
+		</div>
+		<div class="type-wrap">
+			<select class="data-type">
+				<!-- <option value="">选择类型</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option> -->
+			</select>
+		</div>
+		<div class="search-btn">
+			<a href="#content-wrap" style="color:white;"><button class="btn search-data" >搜索</button></a>
+		</div>
+	</div>
+	<div class="header-bottom"></div>
+</div>
+<div class="cutline">
+	—————————————————————————————————————&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据精选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  —————————————————————————————————————
+</div>
+<div id="content">
+	<div class="content-container">
+		<div class="data-display">
+			<div class="img-wrap">
+				<img src="../img/101/20171001101.png">
+			</div>
+			<div class="img-wrap">
+				<img src="../img/102/20171001102.png">
+			</div>
+			<div class="img-wrap">
+				<img src="../img/103/20171001103.png">
+			</div>
+			<div class="img-wrap">
+				<img src="../img/104/20171001104.jpg">
+			</div>
+			<div class="img-wrap" style="margin-right:0px;">
+				<img src="../img/105/20171001105.png">
+			</div>
+		</div>
+		<div class="cutline">
+			—————————————————————————————————————&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  —————————————————————————————————————
+		</div>
+		<div class="container">
+		<div class="content-wrap " id="content-wrap">
+			<!-- <div class="notfindData">
+				未查询到该时间段的数据，请重新选择
+			</div> -->
+			<!-- <div class="data-wrap">
+				<div class="img-wrap">
+					<a href="#"><img src="demo/30.jpg"/></a>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/29.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/28.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/27.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/26.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/25.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/24.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/23.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/22.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/21.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/20.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div>
+			<div class="data-wrap">
+				<div class="img-wrap">
+					<img src="demo/19.jpg"/>
+				</div>
+				<div class="introduction-wrap">
+					<div class="type-name">
+						降水
+					</div>
+					<hr>
+					<div class="name">成都信息工程大学降水量数据图</div>
+					<div class="create-time">
+						2017-10-22
+					</div>
+				</div>
+			</div> -->
+		</div>
+		</div>
+	</div>
+	
+</div>
+<div class="announcement">
+	<div class="announcement-wrap">
+		<div class="hide-show">
+			<div class="announcement-titles">
+				<!-- <p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr> -->
+			</div>
+			<!-- <div class="get-more">
+				<a href="#">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div> -->
+		</div>
+		<div class="pull">
+			<span class="glyphicon glyphicon-hand-left"></span>
+			<p>公<br>告</p>
+		</div>
+		
+	</div>
+</div>
+<div class="footer">
+	气象数据可视化实验室@copyright2017~2017 成都信息工程大学大气科学学院
+</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.waterfall.js"></script>
+<script type="text/javascript" src="jquery/mp.mansory.js"></script>
+<script type="text/javascript" src="jquery/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="jquery/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="js/checkCookie.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/common.js"></script>

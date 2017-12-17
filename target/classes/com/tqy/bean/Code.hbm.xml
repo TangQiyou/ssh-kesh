@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 9:54:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tqy.bean.Code" table="Code">
+        <id name="codeId" type="int">
+            <column name="codeId" />
+            <generator class="identity" />
+        </id>
+        <property name="codeType" type="java.lang.String">
+            <column name="codeType" />
+        </property>
+        <property name="codeValue" type="int">
+            <column name="codeValue" />
+        </property>
+        <property name="codeName" type="java.lang.String">
+            <column name="codeName" />
+        </property>
+        <property name="codeDesc" type="java.lang.String">
+            <column name="codeDesc" />
+        </property>
+    </class>
+</hibernate-mapping>

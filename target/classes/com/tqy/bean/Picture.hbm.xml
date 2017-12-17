@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-12-9 9:54:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tqy.bean.Picture" table="Picture">
+        <id name="picId" type="int">
+            <column name="picId" />
+            <generator class="identity" />
+        </id>
+        <property name="picName" type="java.lang.String">
+            <column name="picName" />
+        </property>
+        <property name="picType" type="int">
+            <column name="picType" />
+        </property>
+        <property name="year" type="int">
+            <column name="year" />
+        </property>
+        <property name="month" type="int">
+            <column name="month" />
+        </property>
+        <property name="day" type="int">
+            <column name="day" />
+        </property>
+        <property name="creatTime" type="java.lang.String">
+            <column name="creatTime" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="url" />
+        </property>
+        <property name="des" type="java.lang.String">
+            <column name="des" />
+        </property>
+    </class>
+</hibernate-mapping>
