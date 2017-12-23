@@ -5,12 +5,15 @@ app.controller('SigninFormController', ['$scope', '$http',  function ($scope, $h
     $scope.login = function () {
     	$scope.data = [];
     	$("#loginBtn").text('登陆中...');
+    	var temp = {"admin.adminAccount":$scope.admin.adminAccount,
+    			"admin.adminPwd":$scope.admin.adminPwd
+    	};
     	$.ajax({
 			type:"post", 
 		 	url:"../back/login",
 			//contentType:"application/json;charser=utf-8",
 			//data:JSON.stringify($scope.user),
-		 	data:$scope.admin,
+		 	data:temp,
 			success:function(data){
 				$scope.data = angular.fromJson(data);
 				if($scope.data.code==1){
@@ -19,7 +22,6 @@ app.controller('SigninFormController', ['$scope', '$http',  function ($scope, $h
 					$("#pwd").val("");
 					$("#loginBtn").text('登陆');
 					alert('管理员用户名或密码错误，请重新输入。');
-					
 				}
 			},
 			error:function(){

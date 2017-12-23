@@ -1,5 +1,10 @@
 package com.zy.dao;
 
-public class ZyAnnouncementDao {
+import org.springframework.stereotype.Component;
+
+import com.tqy.dao.BaseDao;
+
+@Component
+public class ZyAnnouncementDao extends BaseDao{
 
 }

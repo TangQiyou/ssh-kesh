@@ -15,6 +15,7 @@ public class BackAdminAction extends ActionSupport{
 	
 	public String adminLogin(){
 		
+		//System.out.println(admin);
 		boolean flag = tqyAdminService.adminLogin(admin);
     	if (flag){
     		result = Msg.success();   //位于com.tqy.bean.Msg中的success方法
