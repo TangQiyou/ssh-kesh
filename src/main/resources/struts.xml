@@ -13,12 +13,21 @@
         class: action的位置
         method：调用action中的方法
      -->
-   <package name="com" extends="struts-default,json-default" namespace="/web">
+     
+     <!-- name="root"不能变，这里返回的result需要和action中返回的map名字一样 --><!-- type要为json -->
+   <!--  <package name="com" extends="struts-default,json-default" namespace="/web">
        <action name="userLogin" class="com.tqy.actions.web.TqyUserAction" method="userLogin">
+            <result type="json"> 
+                <param name="root">result</param>
+            </result>
+       </action>
+   </package>-->
+    
+   <package name="com" extends="struts-default,json-default" namespace="/back">
+       <action name="login" class="com.tqy.actions.back.BackAdminAction" method="adminLogin">
             <result type="json"> <!-- type要为json -->
                 <param name="root">result</param><!-- name="root"不能变，这里返回的result需要和action中返回的map名字一样 -->
             </result>
        </action>
    </package>
-
 </struts>
