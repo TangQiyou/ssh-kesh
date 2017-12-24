@@ -52,7 +52,7 @@ public class PageInfo extends PageBean{
 		if (pn == tmp) {
 			endRow = listSize - (pn - 1) * pageSize;
 		} else {
-			endRow = (pn - 1) * pageSize + 5;
+			endRow = 5;
 		}
 		return endRow+(pn-1)*pageSize;
 	}

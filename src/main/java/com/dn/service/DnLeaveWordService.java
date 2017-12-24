@@ -15,10 +15,9 @@ public class DnLeaveWordService {
 		DnLeaveWordDao dnLeaveWordDao;
 		
 		public PageInfo getLeaveWordBypage(Integer pn){
-			System.out.println(pn);
 			List<Object> list = dnLeaveWordDao.getLeaveWords();
-			System.out.println(list);
 			PageInfo pageInfo = new PageInfo(list, pn, 5, 5);
+			System.out.println(pageInfo);
 			return pageInfo;
 		}
 }

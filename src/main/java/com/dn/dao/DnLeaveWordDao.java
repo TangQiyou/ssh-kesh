@@ -12,7 +12,6 @@ public class DnLeaveWordDao extends BaseDao {
 		String hql = "From LeaveWord";
 		@SuppressWarnings("unchecked")
 		List<Object> list= getSession().createQuery(hql).list();
-		System.out.println(list);
 		return list;
 	}
 }

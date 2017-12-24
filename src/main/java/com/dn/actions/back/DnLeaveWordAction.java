@@ -14,9 +14,8 @@ public class DnLeaveWordAction extends ActionSupport {
 	
 	//No.3 编写需调用的接口函数
 	public String getLeaveWordsBypage(){
-		System.out.println("pn"+pn);
+		System.out.println("pn: "+pn);
 		PageInfo pageInfo = dnLeaveWordService.getLeaveWordBypage(pn);
-		System.out.println(pageInfo);
 		result = Msg.success();
 		result = Msg.add(result, "pageInfo", pageInfo);
         return SUCCESS;  //将result返回给前端页面
