@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tqy.bean.Announcement;
+import com.tqy.bean.Msg;
+import com.tqy.bean.page.PageInfo;
 import com.zy.service.ZyAnnouncementService;
 
 public class ZyAnnouncementAction extends ActionSupport{
@@ -16,19 +18,19 @@ public class ZyAnnouncementAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 2L;
 
-	private List<Announcement> annoucements;
-	Map<String, Object> result = null;
+	private Map<String, Object> result = null;
 	
 	@Autowired
-	ZyAnnouncementService zyAnnoucementService;
+	ZyAnnouncementService zyAnnouncementService;
 
-	public List<Announcement> getAnnoucements() {
-		return annoucements;
+	public String getAnnouncements(){
+		PageInfo pageInfo = zyAnnouncementService.getAnnouncements();
+		System.out.println("获取pageInfo:"+pageInfo);
+		result = Msg.success();
+		result = Msg.add(result, "pageInfo", pageInfo);
+		return SUCCESS;
 	}
 
-	public void setAnnoucements(List<Announcement> annoucements) {
-		this.annoucements = annoucements;
-	}
 
 	public Map<String, Object> getResult() {
 		return result;

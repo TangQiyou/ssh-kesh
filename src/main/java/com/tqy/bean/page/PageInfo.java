@@ -189,7 +189,6 @@ public class PageInfo extends PageBean{
 		}
 	}
 	
-	
 	public String toString() {
 		return super.toString();
 	}
