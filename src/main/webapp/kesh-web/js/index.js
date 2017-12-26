@@ -143,9 +143,8 @@ $(window).ready(function(){
 		$.ajax({
 			type:"post",
 			url:"../web/getPictureByDate",
-			data:JSON.stringify(jsonData),
+			data:jsonData,
 			dataType:"json",
-			contentType:"application/json;charser=utf-8",
 			success:function(data){
 				var data = eval(data);
 				console.log(data);
