@@ -24,4 +24,18 @@ public class ZyPictureService {
 		
 		return pictures;
 	}
+	
+	public List<Picture> getPictureByType(int type){
+		List<Picture> pictures = new ArrayList<>();
+		
+		for (Object o: zyPictureDao.getPictureByType(type)) {
+			pictures.add((Picture) o);
+		}
+		
+		return pictures;
+	}
+	
+	public Object getPictureByDateAndType(int year, int month, int day, int type){
+		return zyPictureDao.getPictureByDateAndType(year, month, day, type);
+	}
 }

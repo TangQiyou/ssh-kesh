@@ -149,7 +149,6 @@ $(window).ready(function(){
 				var data = eval(data);
 				console.log(data);
 
-			
 				if(data.code == '1'){
 
 					if(data.extend.list.length !=0){
@@ -260,13 +259,11 @@ $(window).ready(function(){
 		$.ajax({
 			type:"post",
 			url:"../web/getPictureByDateAndType",
-			data:JSON.stringify(jsonData),
+			data:jsonData,
 			dataType:"json",
-			contentType:"application/json;charser=utf-8",
 			success:function(data){
 				var data = eval(data);
 				console.log(data);
-
 			
 				if(data.code == '1'){
 					

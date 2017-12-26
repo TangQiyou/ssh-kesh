@@ -18,7 +18,21 @@
 			<result type="json">    
                 <param name="root">result</param>   
             </result>
-		</action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+		</action>
+		
+		<action name="getPictureByType" class="com.zy.actions.web.ZyPictureAction"
+													method="getPictureByType">
+			<result type="json">    
+                <param name="root">result</param>   
+            </result>
+		</action>
+		
+		<action name="getPictureByDateAndType" class="com.zy.actions.web.ZyPictureAction"
+													method="getPictureByDateAndType">
+			<result type="json">    
+                <param name="root">result</param>   
+            </result>
+		</action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	</package>
 	
 	<package name="public" extends="com.zy.actions.web" namespace="/public">

@@ -99,14 +99,12 @@ $(window).ready(function(){
 		$.ajax({
 			type:"post",
 			url:"../web/getPictureByDateAndType",
-			data:JSON.stringify(jsonData),
+			data:jsonData,
 			dataType:"json",
-			contentType:"application/json;charser=utf-8",
 			success:function(data){
 				var data = eval(data);
 				console.log(data);
 
-			
 				if(data.code == '1'){
 					 var detail = '<div class="data-wrap"><div class="img-wrap"><img src="'+
 					 			data.extend.returnPicture.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
