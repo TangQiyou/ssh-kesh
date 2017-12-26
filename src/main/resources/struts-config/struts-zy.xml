@@ -13,4 +13,13 @@
             </result>
 		</action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 	</package>
+	
+	<package name="public" extends="com.zy.actions.web" namespace="/public">
+		<action name="getCodeByType" class="com.zy.actions.web.ZyDataTypeAction" method="getCodeByType">
+			<result type="json">    
+                <param name="root">result</param>   
+            </result>
+		</action>
+	</package>
+	
 </struts>
