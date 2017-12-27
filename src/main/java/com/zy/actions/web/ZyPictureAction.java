@@ -1,7 +1,9 @@
 package com.zy.actions.web;
 
+import java.io.InputStream;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,6 +23,9 @@ public class ZyPictureAction extends ActionSupport{
 	private int day;
 	
 	private int picType;
+	private String picName;
+	
+	private InputStream is;
 	
 	private Map<String, Object> result = null;
 	
@@ -54,6 +59,20 @@ public class ZyPictureAction extends ActionSupport{
 		result = Msg.success();
 		Picture p = zyPictureService.getPictureByDateAndType(year,month,day,picType);
 		Msg.add(result, "returnPicture", p);
+		
+		return SUCCESS;
+	}
+	
+	// 下载图片
+	public String downloadPicture() {
+		if (year != 0 && picType !=0) {
+			Picture p = zyPictureService.getPictureByDateAndType(year,month,day,picType);
+			picName = p.getPicName();
+			String url = p.getUrl().substring(2, p.getUrl().length());
+			is = ServletActionContext.getServletContext().getResourceAsStream(url);
+		}else {
+			System.out.println("下载图片方法没接收到year和picType参数");
+		}
 		
 		return SUCCESS;
 	}
@@ -97,6 +116,22 @@ public class ZyPictureAction extends ActionSupport{
 
 	public void setPicType(int picType) {
 		this.picType = picType;
+	}
+
+	public InputStream getIs() {
+		return is;
+	}
+
+	public void setIs(InputStream is) {
+		this.is = is;
+	}
+
+	public String getPicName() {
+		return picName;
+	}
+
+	public void setPicName(String picName) {
+		this.picName = picName;
 	}
 	
 }

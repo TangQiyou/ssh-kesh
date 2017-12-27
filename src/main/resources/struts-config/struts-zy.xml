@@ -44,7 +44,18 @@
 			<result type="json">    
                 <param name="root">result</param>   
             </result>
-		</action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+		</action>
+		
+		<action name="downloadPicture" class="com.zy.actions.web.ZyPictureAction"
+													method="downloadPicture">
+			<result type="stream">
+				<!-- 指明文件的下载类型 -->
+                <param name="contentType">image/jpeg/png</param>
+				<param name="inputName">is</param>
+				<param name="contentDisposition">attachment;filename=${picName}</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 	</package>
 	
 	<package name="public" extends="com.zy.actions.web" namespace="/public">
