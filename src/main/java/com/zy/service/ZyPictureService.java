@@ -35,7 +35,7 @@ public class ZyPictureService {
 		return pictures;
 	}
 	
-	public Object getPictureByDateAndType(int year, int month, int day, int type){
+	public Picture getPictureByDateAndType(int year, int month, int day, int type){
 		return zyPictureDao.getPictureByDateAndType(year, month, day, type);
 	}
 }

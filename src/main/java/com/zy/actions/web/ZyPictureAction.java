@@ -51,9 +51,10 @@ public class ZyPictureAction extends ActionSupport{
 				+" and picType="+picType);
 		
 
-		Object o = zyPictureService.getPictureByDateAndType(year,month,day,picType);
-		if (o != null) {
-			Msg.add(result, "returnPicture", (Picture) o);
+		Picture p = zyPictureService.getPictureByDateAndType(year,month,day,picType);
+		if (p != null) {
+			System.out.println("查询到:"+p);
+			Msg.add(result, "returnPicture", p);
 		}
 		
 		
