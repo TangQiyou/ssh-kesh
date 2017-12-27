@@ -12,6 +12,18 @@
                 <param name="root">result</param>   
             </result>
 		</action>
+		<action name="announcements2" class="com.zy.actions.web.ZyAnnouncementAction"
+													method="getAnnouncements2">
+			<result type="json">
+                <param name="root">result</param>   
+            </result>
+		</action>
+		<action name="announcement" class="com.zy.actions.web.ZyAnnouncementAction"
+													method="getAnnouncement">
+			<result type="json">    
+                <param name="root">result</param>   
+            </result>
+		</action>
 		
 		<action name="getPictureByDate" class="com.zy.actions.web.ZyPictureAction"
 													method="getPictureByDate" >

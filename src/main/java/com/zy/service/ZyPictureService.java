@@ -16,23 +16,11 @@ public class ZyPictureService {
 	private ZyPictureDao zyPictureDao;
 	
 	public List<Picture> getPictureByDate(int year, int month, int day){
-		List<Picture> pictures = new ArrayList<>();
-		
-		for (Object o: zyPictureDao.getPictureByDate(year, month, day)) {
-			pictures.add((Picture) o);
-		}
-		
-		return pictures;
+		return zyPictureDao.getPictureByDate(year, month, day);
 	}
 	
 	public List<Picture> getPictureByType(int type){
-		List<Picture> pictures = new ArrayList<>();
-		
-		for (Object o: zyPictureDao.getPictureByType(type)) {
-			pictures.add((Picture) o);
-		}
-		
-		return pictures;
+		return zyPictureDao.getPictureByType(type);
 	}
 	
 	public Picture getPictureByDateAndType(int year, int month, int day, int type){

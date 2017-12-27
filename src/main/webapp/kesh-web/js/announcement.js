@@ -60,7 +60,7 @@ $(window).ready(function(){
     
     // 根据ID获取指定公告详情
 	function getAnncById($id){
-
+		
 		$.ajax({
 			type:"get",
 			datatype:"json",

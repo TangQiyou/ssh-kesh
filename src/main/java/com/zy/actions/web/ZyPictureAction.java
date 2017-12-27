@@ -31,33 +31,29 @@ public class ZyPictureAction extends ActionSupport{
 		if (year != 0) {
 			result = Msg.success();
 			Msg.add(result, "list", zyPictureService.getPictureByDate(year, month, day));
-			return SUCCESS;
+		}else {
+			System.out.println("未接收到year, month, day");
 		}
 
-		return ERROR;
-		
+		return SUCCESS;
 	}
 	
 	public String getPictureByType() {
-		result = Msg.success();
-		Msg.add(result, "pictures", zyPictureService.getPictureByType(picType));
+		if (picType != 0) {
+			result = Msg.success();
+			Msg.add(result, "pictures", zyPictureService.getPictureByType(picType));
+		}else {
+			System.out.println("未接收到picType");
+		}
+		
 		
 		return SUCCESS;
 	}
 	
 	public String getPictureByDateAndType() {
 		result = Msg.success();
-		System.out.println("接收:year="+year+" and month="+month+" and day="+day
-				+" and picType="+picType);
-		
-
 		Picture p = zyPictureService.getPictureByDateAndType(year,month,day,picType);
-		if (p != null) {
-			System.out.println("查询到:"+p);
-			Msg.add(result, "returnPicture", p);
-		}
-		
-		
+		Msg.add(result, "returnPicture", p);
 		
 		return SUCCESS;
 	}
