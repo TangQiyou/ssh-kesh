@@ -24,7 +24,7 @@ public class ZyDataTypeAction extends ActionSupport{
 	// 返回所有的图片类型信息
 	public String getCodeByType() throws Exception{
 		List<Object> list2 = zyDataTypeService.getDataByType(code_type);
-		List<Code> list = new ArrayList<>();
+		List<Code> list = new ArrayList<Code>();
 		for (Object o : list2) {
 			list.add((Code)o);
 		}
