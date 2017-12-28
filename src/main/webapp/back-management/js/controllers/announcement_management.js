@@ -78,8 +78,7 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
             		"announcement.annTitle":$scope.item.annTitle,
             		"announcement.annContent": $scope.item.annContent
             };
-            
-            resource.get('../back/announcement', jsonData).then(function (result) {
+            resource.get('../back/addAnnouncement', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '添加公告成功');
                     $scope.loadData();
@@ -110,8 +109,14 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
         modalInstance.result.then(function (result) {
             $scope.item = result;
             $scope.item.annContent = UM.getEditor('editor').getContent();
+            var jsonData = {
+            		"announcement.annId":$scope.item.annId,
+            		"announcement.annTitle":$scope.item.annTitle,
+            		"announcement.annContent": $scope.item.annContent,
+            		"announcement.annTime":$scope.item.annTime
+            };
             // ajax 更新用户信息
-            resource.put('../back/announcement', $scope.item).then(function (result) {
+            resource.get('../back/updateAnnouncement', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '更新公告成功');
                     $scope.loadData();
@@ -140,7 +145,10 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/announcement/'+$scope.item.annId).then(function (result) {
+            var jsonData = {
+            	"announcement.annId":$scope.item.annId
+            };
+            resource.get('../back/deleteAnnouncement',jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除公告成功');
                     $scope.loadData();

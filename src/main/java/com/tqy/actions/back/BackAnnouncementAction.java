@@ -15,7 +15,7 @@ public class BackAnnouncementAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 
 	public String getAnnouncementsByPage(){
-		System.out.println("pn:"+pn);
+		System.out.println("正在访问第  "+pn+"  页公告");
 		PageInfo pageInfo = tqyAnnouncementService.getAnnouncementBypage(pn);
 		result = Msg.success();
 		result = Msg.add(result, "pageInfo", pageInfo);
@@ -27,6 +27,22 @@ public class BackAnnouncementAction extends ActionSupport{
 		boolean flag = tqyAnnouncementService.addAnnouncement(announcement);
 		result = flag ? Msg.success(): Msg.fail();
 		System.out.println("添加公告...end...");
+		return SUCCESS;
+	}
+	
+	public String updateAnnouncement(){
+		System.out.println("修改公告...");
+		boolean flag = tqyAnnouncementService.updateAnnouncement(announcement);
+		result = flag ? Msg.success(): Msg.fail();
+		System.out.println("修改公告...end...");
+		return SUCCESS;
+	}
+	
+	public String deleteAnnouncement(){
+		System.out.println("删除公告...");
+		boolean flag = tqyAnnouncementService.deleteAnnouncement(announcement);
+		result = flag ? Msg.success(): Msg.fail();
+		System.out.println("删除公告...end...");
 		return SUCCESS;
 	}
 	

@@ -37,10 +37,22 @@
             </result>
        </action>
        
-       <action name="announcement" class="com.tqy.actions.back.BackAnnouncementAction" method="addAnnouncement">
+       <action name="addAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="addAnnouncement">
 	       <result type="json">    
 	           <param name="root">result</param>   
 	       </result>
+       </action>
+       
+       <action name="updateAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="updateAnnouncement">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="deleteAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="deleteAnnouncement">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
        </action>
    </package>
    

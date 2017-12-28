@@ -22,4 +22,15 @@ public class TqyAnnuncmentDao extends BaseDao{
 		return 1;
 	}
 	
+	public Integer updateAnnouncement(Announcement announcement){
+		System.out.println(announcement);
+		getSession().saveOrUpdate(announcement);
+		return 1;
+	}
+	
+	public Integer deleteAnnouncement(Announcement announcement){
+		System.out.println(announcement);
+		getSession().delete(announcement);
+		return 1;
+	}
 }

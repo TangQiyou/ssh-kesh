@@ -31,5 +31,13 @@ public class TqyAnnouncementService {
 		return i == 1 ? true: false;
 	}
 	
+	public Boolean updateAnnouncement(Announcement announcement){
+		Integer integer = tqyAnnuncmentDao.updateAnnouncement(announcement);
+		return integer == 1 ? true: false;
+	}
 	
+	public Boolean deleteAnnouncement(Announcement announcement){
+		Integer integer = tqyAnnuncmentDao.deleteAnnouncement(announcement);
+		return integer == 1 ? true: false;
+	}
 }
