@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.tqy.bean.Msg;
 import com.tqy.bean.User;
 import com.tqy.bean.page.PageInfo;
+import com.tqy.service.TqyCodeService;
 import com.tqy.service.TqyUserService;
 
 public class BackUserAction extends ActionSupport{
@@ -22,8 +23,28 @@ public class BackUserAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public String getUserById(){
+		System.out.println("查找ID为  "+ user.getUserId()+"  的用户");
+		User returnUser = tqyUserService.getUserById(user.getUserId());
+		System.out.println(returnUser);
+		if (returnUser == null){
+			result = Msg.fail();
+		} else {
+			result = Msg.success();
+			result = Msg.add(result, "user", returnUser);
+			result = Msg.add(result, "genderList", tqyCodeService.getCodesByCodeType("gender"));
+			result = Msg.add(result, "collegeList", tqyCodeService.getCodesByCodeType("college_type"));
+			result = Msg.add(result, "statusList", tqyCodeService.getCodesByCodeType("status_type"));
+		}
+		return SUCCESS;
+	}
+	
+	
+	
 	@Autowired
 	TqyUserService tqyUserService;
+	@Autowired
+	TqyCodeService tqyCodeService;
 	
 	private Map<String, Object> result = null;
 	private Integer pn;

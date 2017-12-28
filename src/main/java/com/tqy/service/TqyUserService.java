@@ -64,4 +64,9 @@ public class TqyUserService {
 		}
 		return codeName;
 	}
+	
+	public User getUserById(Integer id){
+		User user = tqyUserDao.getUserById(id);
+		return user;
+	}
 }

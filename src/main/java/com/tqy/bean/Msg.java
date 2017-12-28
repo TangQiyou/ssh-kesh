@@ -41,8 +41,14 @@ public class Msg {
 	 * @param value 新添加内容的值
 	 * @return 一个map，包含添加前的内容后添加后的内容
 	 */
+	@SuppressWarnings("unchecked")
 	public static Map<String, Object> add(Map<String, Object> map, String key, Object value){
-		Map<String, Object> extend = new HashMap<String, Object>();
+		Map<String, Object> extend = null;
+		if (map.containsKey("extend")){
+			extend = (Map<String,Object>)map.get("extend");
+		} else {
+			extend = new HashMap<String, Object>();
+		}
 		extend.put(key, value);
 		map.put("extend", extend);
 		return map;

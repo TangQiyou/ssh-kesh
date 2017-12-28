@@ -73,7 +73,7 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
     
     // 查看用户信息
     $scope.loaduser = function(user){
-        resource.get('../back/user', {id:user.userId}).then(function (result) {
+        resource.get('../back/getUserById', {"user.userId":user.userId}).then(function (result) {
             if (result.code==1) {
             	//extend里面不仅包含了user信息，还包含了相应的list
                 $scope.extend = result.extend;

@@ -33,4 +33,15 @@ public class TqyUserDao extends BaseDao{
 		List<Object> users = getSession().createQuery(hql).list();
 		return users;
 	}
+	
+	public User getUserById(Integer id){
+		String hql = "From User Where userId="+id;
+		@SuppressWarnings("unchecked")
+		List<Object> list = getSession().createQuery(hql).list();
+		if (list.isEmpty()){
+			return null;
+		} else {
+			return (User)list.get(0);
+		}
+	}
 }

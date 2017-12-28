@@ -60,6 +60,12 @@
                <param name="root">result</param>   
            </result>
        </action>
+       
+       <action name="getUserById" class="com.tqy.actions.back.BackUserAction" method="getUserById">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
    </package>
    
 </struts>
