@@ -3,16 +3,29 @@ package com.tqy.actions.back;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.tqy.bean.Code;
+import com.tqy.bean.Msg;
 import com.tqy.bean.Picture;
+import com.tqy.bean.page.PageInfo;
+import com.tqy.service.TqyPictureService;
 
 public class BackPictureAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 
-	public List<Picture> getPictureByTypeWithPage(){
-		return null;
+	public String getPictureByType(){
+		try {
+			PageInfo pageInfo = tqyPictureService.getPictureByTypeWithPage(pn, picture.getPicType());
+			result = Msg.success();
+			result = Msg.add(result, "pageInfo", pageInfo);
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
 	}
 	
 	public List<Picture> getPictureByDate(){
@@ -35,6 +48,8 @@ public class BackPictureAction extends ActionSupport{
 		
 	}
 	
+	@Autowired
+	TqyPictureService tqyPictureService;
 	
 	private Map<String, Object> result = null;
 	private Integer pn;

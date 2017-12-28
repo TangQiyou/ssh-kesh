@@ -12,7 +12,10 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
 
     //定义获取种类的函数，并获取设置默认种类
     $scope.loadType = function () {
-        resource.get('../public/getCodeByType',{code_type:"pic_type"}).then(function (result) {
+    	var jsonData = {
+    			"code.codeType":"pic_type"
+    	};
+        resource.get('../pub/getCodeByType',jsonData).then(function (result) {
             if (result.code) {
                 $scope.types = {};
                 $scope.types = result.extend.list;
@@ -39,10 +42,11 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     		$scope.currentPage = 1;
     	}
     	$scope.type = type;
-        resource.post('../back/getPictureByType', {
-        	picType:type.codeValue,
-        	pn:$scope.currentPage
-        }).then(function (result) {
+    	var jsonData = {
+    		"picture.picType":type.codeValue,
+    		"pn":$scope.currentPage
+    	};
+        resource.get('../back/getPictureByType', jsonData).then(function (result) {
 	        if (result.code==1) {
 	            $scope.pictures = result.extend.pageInfo.list;
 	            $scope.totalPage = result.extend.pageInfo.pages;

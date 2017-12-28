@@ -9,8 +9,11 @@ import com.tqy.bean.Picture;
 @Component
 public class TqyPictureDao extends BaseDao{
 	
-	public List<Picture> getPictureByTypeWithPage(){
-		return null;
+	public List<Object> getPictureByTypeWithPage(Integer picType){
+		String hql = "From Picture Where picType =" +picType;
+		@SuppressWarnings("unchecked")
+		List<Object> list = getSession().createQuery(hql).list();
+		return list;
 	}
 	
 	public List<Picture> getPictureByDate(){

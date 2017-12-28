@@ -23,7 +23,14 @@
        </action>
    </package>
    
-    
+   <package name="com.tqy.actions.pub" extends="struts-default,json-default" namespace="/pub">
+        <action name="getCodeByType" class="com.tqy.actions.pub.PubUtilAction" method="getCodeByType">
+            <result type="json">    
+                <param name="root">result</param>   
+            </result>
+        </action>
+   </package>
+   
    <package name="com.tqy.actions.back" extends="struts-default,json-default" namespace="/back">
        <action name="login" class="com.tqy.actions.back.BackAdminAction" method="adminLogin">
             <result type="json">    
@@ -74,6 +81,12 @@
        </action>
        
        <action name="deleteUser" class="com.tqy.actions.back.BackUserAction" method="deleteUser">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="getPictureByType" class="com.tqy.actions.back.BackPictureAction" method="getPictureByType">
            <result type="json">    
                <param name="root">result</param>   
            </result>
