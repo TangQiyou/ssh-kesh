@@ -74,7 +74,12 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
         modalInstance.result.then(function (result) {
             $scope.item = result;
             $scope.item.annContent = UM.getEditor('editor').getContent();
-            resource.post('../back/announcement', $scope.item).then(function (result) {
+            var jsonData = {
+            		"announcement.annTitle":$scope.item.annTitle,
+            		"announcement.annContent": $scope.item.annContent
+            };
+            
+            resource.get('../back/announcement', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '添加公告成功');
                     $scope.loadData();
