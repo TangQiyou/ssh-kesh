@@ -10,6 +10,11 @@
                 <param name="root">result</param>   
             </result>
        </action>
+        <action name="responses" class="com.dn.actions.back.DnResponseAction" method="getResponsesBypage">
+            <result type="json">    
+                <param name="root">result</param>   
+            </result>
+       </action>
    </package>
    
 </struts>
