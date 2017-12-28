@@ -44,4 +44,13 @@ public class TqyUserDao extends BaseDao{
 			return (User)list.get(0);
 		}
 	}
+	
+	public void updateUser(User user){
+		System.out.println(user);
+		getSession().saveOrUpdate(user);
+	}
+	
+	public void deleteUser(User user){
+		getSession().delete(user);
+	}
 }

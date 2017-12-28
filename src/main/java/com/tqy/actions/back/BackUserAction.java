@@ -16,15 +16,22 @@ public class BackUserAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	public String getUserByPage(){
-		System.out.println("正在访问第  "+pn+"  页用户");
-		PageInfo pageInfo = tqyUserService.getUserByPage(pn);
-		result = Msg.success();
-		result = Msg.add(result, "pageInfo", pageInfo);
-		return SUCCESS;
+		try {
+			System.out.println("正在访问第  "+pn+"  页用户");
+			PageInfo pageInfo = tqyUserService.getUserByPage(pn);
+			result = Msg.success();
+			result = Msg.add(result, "pageInfo", pageInfo);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
 	}
 	
 	public String getUserById(){
-		System.out.println("查找ID为  "+ user.getUserId()+"  的用户");
+		System.out.println("查找ID为   "+ user.getUserId()+"  的用户");
 		User returnUser = tqyUserService.getUserById(user.getUserId());
 		System.out.println(returnUser);
 		if (returnUser == null){
@@ -39,7 +46,36 @@ public class BackUserAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+
+	public String updateUser(){
+		try {
+			System.out.println("修改userId为   "+user.getUserId()+"  的信息");
+			tqyUserService.updateUser(user);
+			result = Msg.success();
+			System.out.println("update end...");
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
+	}
 	
+	public String deleteUser(){
+		try {
+			System.out.println("delete the information of userId = " +user.getUserId());
+			tqyUserService.deleteUser(user);
+			result = Msg.success();
+			System.out.println("delete...end..");
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
+	}
 	
 	@Autowired
 	TqyUserService tqyUserService;

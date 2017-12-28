@@ -69,4 +69,12 @@ public class TqyUserService {
 		User user = tqyUserDao.getUserById(id);
 		return user;
 	}
+	
+	public void updateUser(User user){
+		tqyUserDao.updateUser(user);
+	}
+	
+	public void deleteUser(User user){
+		tqyUserDao.deleteUser(user);
+	}
 }

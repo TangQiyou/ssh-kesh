@@ -100,7 +100,22 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
         });
         modalInstance.result.then(function (result) {
         	$scope.item = result;
-            resource.put('../back/user', $scope.item).then(function (result) {
+        	var jsonData = {
+        			"user.userId":$scope.item.userId,
+        			"user.userAccount":$scope.item.userAccount,
+        			"user.userPwd":$scope.item.userPwd,
+        			"user.userName":$scope.item.userName,
+        			"user.gender":$scope.item.gender,
+        			"user.age":$scope.item.age,
+        			"user.qq":$scope.item.qq,
+        			"user.tel":$scope.item.tel,
+        			"user.college":$scope.item.college,
+        			"user.status":$scope.item.status,
+        			"user.email":$scope.item.email,
+        			"user.userHead":$scope.item.userHead,
+        			"user.userLastLoginTime":$scope.item.userLastLoginTime
+        	};
+            resource.get('../back/updateUser', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '修改用户信息成功');
                     $scope.loadData();
@@ -130,7 +145,7 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/user/'+$scope.item.userId).then(function (result) {
+            resource.get('../back/deleteUser',{"user.userId":$scope.item.userId}).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除成功');
                     $scope.loadData();

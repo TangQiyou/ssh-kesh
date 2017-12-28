@@ -66,6 +66,18 @@
                <param name="root">result</param>   
            </result>
        </action>
+       
+       <action name="updateUser" class="com.tqy.actions.back.BackUserAction" method="updateUser">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="deleteUser" class="com.tqy.actions.back.BackUserAction" method="deleteUser">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
    </package>
    
 </struts>
