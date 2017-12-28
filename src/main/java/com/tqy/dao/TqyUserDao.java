@@ -15,6 +15,7 @@ import com.tqy.bean.User;
 public class TqyUserDao extends BaseDao{
 	
 	//根据需求编写查询函数
+	@SuppressWarnings("unchecked")
 	public User userLogin(User user){
 		String hql = "FROM User u WHERE u.userAccount='"+user.getUserAccount()+"' and u.userPwd='"+user.getUserPwd()+"'";
 		List<User> users= null;
@@ -24,5 +25,12 @@ public class TqyUserDao extends BaseDao{
 		} else {
 			return users.get(0);
 		}
+	}
+	
+	public List<Object> getUsers(){
+		String hql = "FROM User ";
+		@SuppressWarnings("unchecked")
+		List<Object> users = getSession().createQuery(hql).list();
+		return users;
 	}
 }
