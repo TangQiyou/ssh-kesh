@@ -97,6 +97,12 @@
                <param name="root">result</param>   
            </result>
        </action>
+       
+       <action name="getPictureByDate" class="com.tqy.actions.back.BackPictureAction" method="getPictureByDate">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
    </package>
    
 </struts>
