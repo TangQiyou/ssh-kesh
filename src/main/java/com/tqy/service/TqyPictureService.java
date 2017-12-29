@@ -21,6 +21,12 @@ public class TqyPictureService {
 		return pageInfo;
 	}
 	
+	public PageInfo getPictureByDateAndType(Picture picture){
+		List<Object> list = tqyPictureDao.getPictureByDateAndType(picture);
+		PageInfo pageInfo = new PageInfo(list,1,5,5);
+		return pageInfo;
+	}
+	
 	public List<Picture> getPictureByDate(){
 		return null;
 	}

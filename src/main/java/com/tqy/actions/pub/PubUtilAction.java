@@ -16,7 +16,7 @@ public class PubUtilAction extends ActionSupport{
 
 	public String getCodeByType(){
 		try {
-			System.out.println("xxx"+code.getCodeType());
+			System.out.println("get the code type: "+code.getCodeType());
 			List<Object> list = tqyCodeService.getCodesByCodeType(code.getCodeType());
 			result = Msg.success();
 			result = Msg.add(result, "list", list);

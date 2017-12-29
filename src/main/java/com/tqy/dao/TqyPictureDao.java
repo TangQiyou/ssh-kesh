@@ -16,6 +16,19 @@ public class TqyPictureDao extends BaseDao{
 		return list;
 	}
 	
+	public List<Object> getPictureByDateAndType(Picture picture){
+		String hql = "From Picture Where year = "+ picture.getYear() + " and month = "+ picture.getMonth()
+		+" and day = "+ picture.getDay() +" and picType = " + picture.getPicType(); 
+		System.out.println(hql);
+		@SuppressWarnings("unchecked")
+		List<Object> list = getSession().createQuery(hql).list();
+		if (list.isEmpty()){
+			return null;
+		} else {
+			return list;
+		}
+	}
+	
 	public List<Picture> getPictureByDate(){
 		return null;
 	}

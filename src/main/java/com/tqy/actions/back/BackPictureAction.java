@@ -28,6 +28,23 @@ public class BackPictureAction extends ActionSupport{
 		}
 	}
 	
+	public String getPictureByDateAndType(){
+		try {
+			System.out.println("get the picture by date and type");
+			PageInfo pageInfo = tqyPictureService.getPictureByDateAndType(picture);
+			if (pageInfo == null){
+				result = Msg.fail();
+			} else {
+				result = Msg.success();
+				result = Msg.add(result, "pageInfo", pageInfo);
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
+	}
+	
 	public List<Picture> getPictureByDate(){
 		return null;
 	}

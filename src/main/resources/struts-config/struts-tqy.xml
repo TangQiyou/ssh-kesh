@@ -38,25 +38,25 @@
             </result>
        </action>
        
-       <action name="announcements" class="com.tqy.actions.back.BackAnnouncementAction" method="getAnnouncementsByPage">
+       <action name="announcements1" class="com.tqy.actions.back.BackAnnouncementAction" method="getAnnouncementsByPage">
             <result type="json">    
                 <param name="root">result</param>   
             </result>
        </action>
        
-       <action name="addAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="addAnnouncement">
+       <action name="addAnnouncement1" class="com.tqy.actions.back.BackAnnouncementAction" method="addAnnouncement">
 	       <result type="json">    
 	           <param name="root">result</param>   
 	       </result>
        </action>
        
-       <action name="updateAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="updateAnnouncement">
+       <action name="updateAnnouncement1" class="com.tqy.actions.back.BackAnnouncementAction" method="updateAnnouncement">
            <result type="json">    
                <param name="root">result</param>   
            </result>
        </action>
        
-       <action name="deleteAnnouncement" class="com.tqy.actions.back.BackAnnouncementAction" method="deleteAnnouncement">
+       <action name="deleteAnnouncement1" class="com.tqy.actions.back.BackAnnouncementAction" method="deleteAnnouncement">
            <result type="json">    
                <param name="root">result</param>   
            </result>
@@ -87,6 +87,12 @@
        </action>
        
        <action name="getPictureByType" class="com.tqy.actions.back.BackPictureAction" method="getPictureByType">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="getPictureByDateAndType" class="com.tqy.actions.back.BackPictureAction" method="getPictureByDateAndType">
            <result type="json">    
                <param name="root">result</param>   
            </result>

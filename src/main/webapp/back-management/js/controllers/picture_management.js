@@ -95,11 +95,12 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     //根据输入框输入的信息查找对应的图片
     $scope.search = function (searchYear,searchMonth,searchDay,selectedType) {
         if (selectedType == null){
-            resource.post('../back/getPictureByDate', {
-                year:searchYear,
-                month:searchMonth,
-                day:searchDay
-            }).then(function (result) {
+        	var jsonData ={
+                    "picture.year":searchYear,
+                    "picture.month":searchMonth,
+                    "picture.day":searchDay
+                };
+            resource.get('../back/getPictureByDate', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '查询成功');
                     $scope.flag = true;
@@ -111,12 +112,13 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                 }
             });
         }else{
-            resource.post('../back/getPictureByDateAndType', {
-                year:searchYear,
-                month:searchMonth,
-                day:searchDay,
-                picType:selectedType.codeValue
-            }).then(function (result) {
+        	var jsonData ={
+                    "picture.year":searchYear,
+                    "picture.month":searchMonth,
+                    "picture.day":searchDay,
+                    "picture.picType":selectedType.codeValue
+                };
+            resource.get('../back/getPictureByDateAndType', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '查询成功');
                     $scope.flag = true;
