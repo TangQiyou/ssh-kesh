@@ -25,6 +25,16 @@
                 <param name="root">result</param>   
             </result>
        </action>
+        <action name="deleteResponse" class="com.dn.actions.back.DnResponseAction" method="deleteResponse">
+            <result type="json">    
+                <param name="root">result</param>   
+            </result>
+       </action>
+       <action name="addResponse" class="com.dn.actions.back.DnResponseAction" method="addResponse">
+            <result type="json">    
+                <param name="root">result</param>   
+            </result>
+       </action>
    </package>
    
 </struts>

@@ -106,7 +106,12 @@ app.controller('LeveWordManagementCtrl', ['$scope', '$modal','resource','toaster
         modalInstance.result.then(function (result) {
             $scope.item = result
             $scope.item.responseContent = UM.getEditor('editor').getContent();
-            resource.post('../back/response', $scope.item).then(function (result) {
+            var jsonData = {
+                "response.responseContent":$scope.item.responseContent,
+                "response.responseTime": $scope.item.responseTime,
+                "response.responseLeaveId":$scope.item.responseLeaveId
+            };
+            resource.get('../back/addResponse', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '回复留言成功');
                     $scope.loadData();
@@ -134,7 +139,10 @@ app.controller('LeveWordManagementCtrl', ['$scope', '$modal','resource','toaster
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/leaveword/'+$scope.item.leaveId).then(function (result) {
+            var jsonData = {
+                "leaveWord.leaveId":$scope.item.leaveId
+            };
+            resource.get('../back/deleteLeaveWord',jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除留言成功');
                     $scope.loadData();
