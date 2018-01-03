@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssm.dao.SsmLeavewordDao;
+import com.ssm.dao.SsmPersonalInfoDao;
 import com.tqy.bean.LeaveWord;
 import com.tqy.bean.Response;
 import com.tqy.bean.page.PageInfo;
@@ -15,6 +16,9 @@ public class SsmLeavewordService {
 	
 	@Autowired
 	SsmLeavewordDao ssmLeavewordDao;
+	
+	@Autowired
+	SsmPersonalInfoDao ssmPersonalInfoDao;
 	
 	public PageInfo getLeavewordByUserid(Integer pn,Integer id){
 		System.out.println("service得到用户"+pn+","+id);
@@ -44,7 +48,7 @@ public class SsmLeavewordService {
 	}
 	
 	public void addLeaveword(LeaveWord leaveword){
-		
+		leaveword.setLeaveUser(ssmPersonalInfoDao.getUserById(leaveword.getLeaveUserId()));
 		ssmLeavewordDao.addLeaveword(leaveword);
 	}
 	
