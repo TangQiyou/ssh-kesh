@@ -4,7 +4,51 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-
+	<package name="com.ssm.actions.web" extends="struts-default,json-default" namespace="/web">
+		
+		
+       <action name="getUserById" class="com.ssm.actions.web.SsmPersonalInfoAction" method="getUserById">
+           <result type="json">
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="updateUser" class="com.ssm.actions.web.SsmPersonalInfoAction" method="updateUser">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="updatePassword" class="com.ssm.actions.web.SsmPasswordAction" method="updatePassword">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="getLeavewordByUserid" class="com.ssm.actions.web.SsmLeavewordAction" method="getLeavewordByUserid">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="getLeavewordDetails" class="com.ssm.actions.web.SsmLeavewordAction" method="getLeavewordDetails">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="updateLeaveword" class="com.ssm.actions.web.SsmLeavewordAction" method="updateLeaveword">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="deleteLeaveword" class="com.ssm.actions.web.SsmLeavewordAction" method="deleteLeaveword">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="addLeaveword" class="com.ssm.actions.web.SsmLeavewordAction" method="addLeaveword">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+   </package>
      
    
 </struts>
