@@ -134,7 +134,10 @@ app.controller('ResponseManagementCtrl', ['$scope', '$modal','resource','toaster
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/response/'+$scope.item.responseId).then(function (result) {
+            var jsonData = {
+                "response.responseId":$scope.item.responseId
+            };
+            resource.get('../back/deleteResponse',jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除回复成功');
                     $scope.loadData();
