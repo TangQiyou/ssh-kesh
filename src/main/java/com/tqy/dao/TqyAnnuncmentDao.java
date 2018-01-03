@@ -16,16 +16,14 @@ public class TqyAnnuncmentDao extends BaseDao{
 		return list;
 	}
 	
-	public Integer addAnnouncement(Announcement announcement){
+	public void addAnnouncement(Announcement announcement){
 		System.out.println(announcement);
 		getSession().saveOrUpdate(announcement);
-		return 1;
 	}
 	
-	public Integer updateAnnouncement(Announcement announcement){
+	public void updateAnnouncement(Announcement announcement){
 		System.out.println(announcement);
 		getSession().saveOrUpdate(announcement);
-		return 1;
 	}
 	
 	public Integer deleteAnnouncement(Announcement announcement){

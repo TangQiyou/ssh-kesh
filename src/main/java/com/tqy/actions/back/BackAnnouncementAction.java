@@ -23,27 +23,42 @@ public class BackAnnouncementAction extends ActionSupport{
 	}
 	
 	public String addAnnouncement(){
-		System.out.println("添加公告...");
-		boolean flag = tqyAnnouncementService.addAnnouncement(announcement);
-		result = flag ? Msg.success(): Msg.fail();
-		System.out.println("添加公告...end...");
-		return SUCCESS;
+		try {
+			System.out.println("添加公告...");
+			tqyAnnouncementService.addAnnouncement(announcement);
+			System.out.println("添加公告...end...");
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
 	}
 	
 	public String updateAnnouncement(){
-		System.out.println("修改公告...");
-		boolean flag = tqyAnnouncementService.updateAnnouncement(announcement);
-		result = flag ? Msg.success(): Msg.fail();
-		System.out.println("修改公告...end...");
-		return SUCCESS;
+		try {
+			System.out.println("修改公告...");
+			tqyAnnouncementService.updateAnnouncement(announcement);
+			result = Msg.success();
+			System.out.println("修改公告...end...");
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
 	}
 	
 	public String deleteAnnouncement(){
-		System.out.println("删除公告...");
-		boolean flag = tqyAnnouncementService.deleteAnnouncement(announcement);
-		result = flag ? Msg.success(): Msg.fail();
-		System.out.println("删除公告...end...");
-		return SUCCESS;
+		try {
+			System.out.println("删除公告...");
+			tqyAnnouncementService.deleteAnnouncement(announcement);
+			result = Msg.success();
+			System.out.println("删除公告...end...");
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
 	}
 	
 	@Autowired

@@ -23,21 +23,18 @@ public class TqyAnnouncementService {
 		return pageInfo;
 	}
 	
-	public Boolean addAnnouncement(Announcement announcement){
+	public void addAnnouncement(Announcement announcement){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = format.format(new Date());
 		announcement.setAnnTime(time);
-		Integer i = tqyAnnuncmentDao.addAnnouncement(announcement);
-		return i == 1 ? true: false;
+		tqyAnnuncmentDao.addAnnouncement(announcement);
 	}
 	
-	public Boolean updateAnnouncement(Announcement announcement){
-		Integer integer = tqyAnnuncmentDao.updateAnnouncement(announcement);
-		return integer == 1 ? true: false;
+	public void updateAnnouncement(Announcement announcement){
+		tqyAnnuncmentDao.updateAnnouncement(announcement);
 	}
 	
-	public Boolean deleteAnnouncement(Announcement announcement){
-		Integer integer = tqyAnnuncmentDao.deleteAnnouncement(announcement);
-		return integer == 1 ? true: false;
+	public void deleteAnnouncement(Announcement announcement){
+		tqyAnnuncmentDao.deleteAnnouncement(announcement);
 	}
 }

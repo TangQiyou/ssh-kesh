@@ -10,7 +10,7 @@ import com.tqy.bean.Picture;
 public class TqyPictureDao extends BaseDao{
 	
 	public List<Object> getPictureByTypeWithPage(Integer picType){
-		String hql = "From Picture Where picType =" +picType;
+		String hql = "From Picture Where picType =" +picType+"order by picId DESC";
 		@SuppressWarnings("unchecked")
 		List<Object> list = getSession().createQuery(hql).list();
 		return list;
@@ -29,23 +29,32 @@ public class TqyPictureDao extends BaseDao{
 		}
 	}
 	
-	public List<Picture> getPictureByDate(){
-		return null;
+	public Integer addOnlyPicture(Picture picture){
+		getSession().save(picture);
+		System.out.println("新生成主键为： "+picture.getPicId());
+		return picture.getPicId();
 	}
 	
-	public Picture addOnlyPicture(){
-		return null;
+	public void addPicture(Picture addPicture){
+		getSession().saveOrUpdate(addPicture);
 	}
 	
-	public Picture addPicture(){
-		return null;
+	public Picture getPictureById(Integer id){
+		String hql = "From Picture Where picId="+id;
+		List<Object> list = getSession().createQuery(hql).list();
+		if(!list.isEmpty()){
+			return (Picture)list.get(0);
+		} else {
+			return null;
+		}
+		
 	}
 	
 	public void updatePicture(){
 		
 	}
 	
-	public void deletePicture(){
-		
+	public void deletePicture(Picture picture){
+		getSession().delete(picture);
 	}
 }
