@@ -103,6 +103,7 @@ app.controller('LeveWordManagementCtrl', ['$scope', '$modal','resource','toaster
                 }
             }
         });
+        $scope.update($scope.liuyan);
         modalInstance.result.then(function (result) {
             $scope.item = result
             $scope.item.responseContent = UM.getEditor('editor').getContent();
@@ -120,6 +121,16 @@ app.controller('LeveWordManagementCtrl', ['$scope', '$modal','resource','toaster
                 }
             });
         });
+    }
+    $scope.update = function(liuyan){
+    	var jsonData = {
+    			"leaveWord.leaveId" : liuyan.leaveId,
+    			"leaveWord.leaveTitle" : liuyan.leaveTitle,
+    			"leaveWord.leaveContent" : liuyan.leaveContent,
+    			"leaveWord.leaveTime" : liuyan.leaveTime,
+    			"leaveWord.leaveUserId" : liuyan.leaveUserId,
+    			"leaveWord.isResponsed" : liuyan.isResponsed
+    	}
     }
     $scope.delete = function (pinglun) {
         $scope.pinglun = pinglun;
