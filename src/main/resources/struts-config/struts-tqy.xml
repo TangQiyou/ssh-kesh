@@ -103,6 +103,24 @@
                <param name="root">result</param>   
            </result>
        </action>
+       
+       <action name="addOnlyPicture" class="com.tqy.actions.back.BackPictureAction" method="addOnlyPicture">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="addPicture" class="com.tqy.actions.back.BackPictureAction" method="addPicture">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       <action name="deletePicture" class="com.tqy.actions.back.BackPictureAction" method="deletePicture">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
    </package>
    
 </struts>

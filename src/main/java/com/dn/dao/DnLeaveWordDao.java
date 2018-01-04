@@ -1,9 +1,12 @@
 package com.dn.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.tqy.bean.Announcement;
 import com.tqy.bean.LeaveWord;
 import com.tqy.dao.BaseDao;
 
@@ -20,5 +23,19 @@ public class DnLeaveWordDao extends BaseDao {
 	public Integer deleteLeaveWord(LeaveWord leaveWord) {
 		getSession().delete(leaveWord);
 		return 1;
+	}
+
+	public void updateLeaveword(LeaveWord leaveword) {
+
+		String hql = "From LeaveWord Where leaveId=" + leaveword.getLeaveId();
+		@SuppressWarnings("unchecked")
+		List<Object> list = getSession().createQuery(hql).list();
+
+		LeaveWord updateleave = (LeaveWord) list.get(0);
+
+		updateleave.setIsResponsed(leaveword.getIsResponsed());
+
+		System.out.println(leaveword);
+		getSession().saveOrUpdate(updateleave);
 	}
 }

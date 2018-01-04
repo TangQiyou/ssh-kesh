@@ -1,6 +1,9 @@
 
 
 $(document).ready(function() {
+	
+	var userInfo={};
+	
 	$.datetimepicker.setLocale('ch');
 	$('.datetimepicker').datetimepicker({
 		timepicker:false,  
@@ -11,7 +14,7 @@ $(document).ready(function() {
 	});
 
 	// 获取各种selects
-	getSelects();
+//	getSelects();
 	
 	// 调用获取用户信息函数
 	findOneUserById();
@@ -57,17 +60,32 @@ $(document).ready(function() {
 	 * 参数：用户ID
 	 */
 	function findOneUserById(){
-
+		
+		var jsonData = {
+				"user.userId":getCookie('userid')
+		};
 		$.ajax({
 			type:"get",
-			url:"../web/user",
+			url:"../web/getUserById",
 		    dataType:"json",
-		    data:"id="+getCookie('userid'),
-			contentType:"application/json;charser=utf-8",
+		    data:jsonData,
+			//contentType:"application/json;charser=utf-8",
 			success: function(data){
 				var user = eval(data.extend.user);
-				console.log(user);
+				
+				// 添加学院option
+				$.each(data.extend.collegeList,function(i,option){
 
+					$("select[name='college']").append("<option value='"+option.codeValue+"'>"+option.codeName+"</option>");
+				
+				});
+
+				// 添加身份option
+				$.each(data.extend.statusList,function(i,option){
+
+					$("select[name='status']").append("<option value='"+option.codeValue+"'>"+option.codeName+"</option>");
+				
+				});
 				$(".user-status .status").html(user.userName);
 				$("input[name='username']").val(user.userName);
 				$("input[name='qqcode']").val(user.qq);
@@ -81,6 +99,12 @@ $(document).ready(function() {
 				$("select[name='gender']").val(user.gender);
 				$("select[name='college']").val(user.college);
 				$("select[name='status']").val(user.status);
+				
+				userInfo={"userAccount":user.userAccount,
+							"userHead":user.userHead,
+							"userLastLoginTime":user.userLastLoginTime,
+							"userPwd":user.userPwd
+						}
 				
 			},
 			error:function(jqXHR, textStatus, errorThrown){
@@ -98,22 +122,25 @@ $(document).ready(function() {
 	function updateInformation(){
 		
 		var jsonData={
-				"userId":getCookie('userid'),
-				"userName":$("input[name='username']").val(),
-				"email":$("input[name='email']").val(),
-				"qq":$("input[name='qqcode']").val(),
-				"tel":$("input[name='phone']").val(),
-				"age":$("input[name='age']").val(),
-				"gender":$("select[name='gender']").find("option:selected").val(),
-				"college":$("select[name='college']").find("option:selected").val(),
-				"status":$("select[name='status']").find("option:selected").val()
+				"user.userId":getCookie('userid'),
+				"user.userName":$("input[name='username']").val(),
+				"user.email":$("input[name='email']").val(),
+				"user.qq":$("input[name='qqcode']").val(),
+				"user.tel":$("input[name='phone']").val(),
+				"user.age":$("input[name='age']").val(),
+				"user.gender":$("select[name='gender']").find("option:selected").val(),
+				"user.college":$("select[name='college']").find("option:selected").val(),
+				"user.status":$("select[name='status']").find("option:selected").val(),
+				"user.userAccount":userInfo.userAccount,
+				"user.userHead":userInfo.userHead,
+				"user.userPwd":userInfo.userPwd,
+				"user.userLastLoginTime":userInfo.userLastLoginTime
 			};
 		$.ajax({
-			type:"put",
-			url:"../web/user",
+			type:"get",
+			url:"../web/updateUser",
 		    dataType:"json",
-			contentType:"application/json;charser=utf-8",
-			data:JSON.stringify(jsonData),
+			data:jsonData,
 			success: function(data){
 				var data = eval(data);
 				
@@ -148,27 +175,35 @@ $(document).ready(function() {
 	function reSetPassword(){
 
 		var jsonData={
-					"userId":getCookie('userid'),
-					"oldPwd":$("input[name='oldpassword']").val(),
-					"userPwd":$("input[name='confirmpassword']").val()
+					"user.userId":getCookie('userid'),
+					"user.oldPwd":$("input[name='oldpassword']").val(),
+					"user.userPwd":$("input[name='confirmpassword']").val()
 				};
 		$.ajax({
-			type:"put",
-			url:"../web/updatePwd",
+			type:"get",
+			url:"../web/updatePassword",
 		    dataType:"json",
-			contentType:"application/json;charser=utf-8",
-			data:JSON.stringify(jsonData),
+			data:jsonData,
 			success: function(data){
 				var data = eval(data);
-				console.log(data);
+				
 				if(data.code == 1){
-					swal({
-						title:"修改密码成功，下次请用新密码登录",
-						type:"success",
-						showConfirmButton: true,
-					},function(){
-						window.location.reload();
-					});
+					if(data.extend.info == "原密码错误"){
+						swal({
+							title:"原密码错误",
+							type:"warning",
+							showConfirmButton: true,
+						});
+					}else{
+						swal({
+							title:"修改密码成功，下次请用新密码登录",
+							type:"success",
+							showConfirmButton: true,
+						},function(){
+							window.location.reload();
+						});
+					}
+					
 				}else{
 					swal({
 						title:"修改密码失败，请重试",
@@ -302,17 +337,16 @@ function getLeavewordByUserid(pn){
 	$(".leaveWord-table").find("tbody").empty();
 	var jsonData={
 				"pn":pn,
-				"leaveUserId":getCookie('userid')
+				"leaveword.leaveUserId":getCookie('userid')
 			};
 	$.ajax({
-		type:"POST",
-		url:"../web/leavewords",
+		type:"get",
+		url:"../web/getLeavewordByUserid",
 	    dataType:"json",
-		contentType:"application/json;charser=utf-8",
-		data:JSON.stringify(jsonData),
+		data:jsonData,
 		success: function(data){
 			var data = eval(data);
-			console.log(data);
+			
 			if(data.code == 1){
 
 				if(currentpage == 0){
@@ -325,10 +359,13 @@ function getLeavewordByUserid(pn){
 					$(".leaveWord-table").find("tbody").append("<tr><td colspan='5'>您还没有留言....</td></tr>");
 				}
 				$.each(data.extend.pageInfo.list,function(i,word){
-
 					
+					var isResponsedName = "未回复";
+					if(word.isResponsed == 50){
+						isResponsedName = "已回复";
+					}
 					var leavewords = '<tr><td><nobr>'+word.leaveTitle+
-									'</nobr></td><td>'+word.leaveTime+'</td><td>'+word.isResponsedName+
+									'</nobr></td><td>'+word.leaveTime+'</td><td>'+isResponsedName+
 									'</td><td><button class="btn btn-default" onclick="seeLeavewordFun('+word.leaveId+')" data-toggle="modal" data-target="#seeLeaveword">'
 									+'<span class="glyphicon glyphicon-eye-open"></span>查看</button>'
 									+'<button class="btn btn-default" onclick="modifyLeavewordFun('+word.leaveId+','+pn+')" data-toggle="modal" data-target="#modifyLeaveword">'
@@ -369,19 +406,18 @@ function getLeavewordByUserid(pn){
 		$('.addLeaveword-btn').bind("click",function(){
 
 			var jsonData={
-					"leaveUserId":getCookie('userid'),
-				    "leaveTitle":$("#addLeaveword").find("input[name='title-input']").val(),
-				    "leaveContent":$("#addLeaveword").find("textarea").val()
+					"leaveword.leaveUserId":getCookie('userid'),
+				    "leaveword.leaveTitle":$("#addLeaveword").find("input[name='title-input']").val(),
+				    "leaveword.leaveContent":$("#addLeaveword").find("textarea").val()
 				}
 			$.ajax({
-				type:"post",
-				url:"../web/leaveword",
-				data:JSON.stringify(jsonData),
+				type:"get",
+				url:"../web/addLeaveword",
+				data:jsonData,
 			    dataType:"json",
-				contentType:"application/json;charser=utf-8",
 				success: function(data){
 					var data = eval(data);
-					console.log(data);
+					
 					if(data.code == 1){
 						swal({
 							title:"添加留言成功",
@@ -425,19 +461,18 @@ function getLeavewordByUserid(pn){
 		$('.modifyLeaveword-btn').bind("click",function(){
 
 			var jsonData={
-				    "leaveId":id,
-				    "leaveTitle":$("#modifyLeaveword").find("input[name='title-input']").val(),
-				    "leaveContent":$("#modifyLeaveword").find("textarea").val()
+				    "leaveword.leaveId":id,
+				    "leaveword.leaveTitle":$("#modifyLeaveword").find("input[name='title-input']").val(),
+				    "leaveword.leaveContent":$("#modifyLeaveword").find("textarea").val()
 				}
 			$.ajax({
-				type:"put",
-				url:"../web/leaveword",
+				type:"get",
+				url:"../web/updateLeaveword",
 			    dataType:"json",
-			    data:JSON.stringify(jsonData),
-				contentType:"application/json;charser=utf-8",
+			    data:jsonData,
 				success: function(data){
 					var data = eval(data);
-					console.log(data);
+					
 					if(data.code == 1){
 						swal({
 							title:"修改留言成功",
@@ -485,13 +520,14 @@ function getLeavewordByUserid(pn){
 
 		$.ajax({
 			type:"get",
-			url:"../web/leaveword",
-			data:"id="+id,
+			url:"../web/getLeavewordDetails",
+			data:{
+				"leaveword.leaveId":id
+			},
 		    dataType:"json",
-			contentType:"application/json;charser=utf-8",
 			success: function(data){
 				var leaveword = eval(data.extend.leaveword);
-				console.log(data);
+				
 				if(data.code == 1){
 					
 					$("#seeLeaveword").find(".leaveTitle").html(leaveword.leaveTitle);
@@ -538,13 +574,15 @@ function getLeavewordByUserid(pn){
 		$('.deleteLeaveword-btn').bind("click",function(){
 
 			$.ajax({
-				type:"delete",
-				url:"../web/leaveword/"+id,
+				type:"get",
+				url:"../web/deleteLeaveword",
+				data:{
+					"leaveword.leaveId":id
+				},
 			    dataType:"json",
-				contentType:"application/json;charser=utf-8",
 				success: function(data){
 					var data = eval(data);
-					console.log(data);
+					
 					if(data.code == 1){
 						swal({
 							title:"删除留言成功",

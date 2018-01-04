@@ -167,7 +167,13 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.post('../back/picture', $scope.item).then(function (result) {
+            var jsonData = {
+            		"picture.picId":$scope.item.picId,
+            		"picture.year":$scope.item.year,
+            		"picture.month":$scope.item.month,
+            		"picture.day":$scope.item.day
+            };
+            resource.get('../back/addPicture', jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '添加图片成功');
                     //图片完成上传后返回当前页
@@ -197,7 +203,10 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/picture/'+$scope.item.picId).then(function (result) {
+            var jsonData = {
+            		"picture.picId":$scope.item.picId
+            };
+            resource.get('../back/deletePicture',jsonData).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除图片成功');
                     $scope.loadData($scope.type);
@@ -249,7 +258,7 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
         var fd = new FormData();
         var file = item._file;
         fd.append('file', file);
-        fd.append('picType', $scope.codeValue);  
+        fd.append('picture.picType', $scope.codeValue);  
         console.log($scope.type.codeValue);
         $http({
             method: 'POST',

@@ -1,5 +1,7 @@
 package com.tqy.actions.back;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.tqy.bean.Msg;
 import com.tqy.bean.Picture;
 import com.tqy.bean.page.PageInfo;
 import com.tqy.service.TqyPictureService;
+import com.tqy.utils.PictureUtil;
 
 public class BackPictureAction extends ActionSupport {
 
@@ -61,21 +64,65 @@ public class BackPictureAction extends ActionSupport {
 		}
 	}
 
-	public Picture addOnlyPicture() {
-		return null;
+	public String addOnlyPicture() throws IOException {
+		try {
+			long startTime = System.currentTimeMillis();
+			boolean flag = PictureUtil.uploadPictureForSSH(file2, picture.getPicType(), fileFileName);
+			if (flag){
+				Integer picId = tqyPictureService.addOnlyPicture(picture,fileFileName);
+				if (picId != null) {
+					result = Msg.success();
+					result = Msg.add(result, "picId", picId);
+					long endTime = System.currentTimeMillis();
+					result = Msg.add(result, "totalTime", (endTime-startTime)+"ms");
+				} else {
+					result = Msg.fail();
+				}
+				
+			} else {
+				result = Msg.fail();
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
 	}
 
-	public Picture addPicture() {
-		return null;
+	public String addPicture() {
+		try {
+			tqyPictureService.addPicture(picture);
+			result = Msg.success();
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
 	}
-
+	
+	public String deletePicture() {
+		try {
+			Picture temp = tqyPictureService.getPictureById(picture.getPicId());
+			picture.setPicType(temp.getPicType());
+			picture.setPicName(temp.getPicName());
+			tqyPictureService.deletePicture(picture);
+			result = Msg.success();
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = Msg.fail();
+			return SUCCESS;
+		}
+	}
+	
 	public void updatePicture() {
 
 	}
 
-	public void deletePicture() {
 
-	}
 
 	@Autowired
 	TqyPictureService tqyPictureService;
@@ -84,6 +131,33 @@ public class BackPictureAction extends ActionSupport {
 	private Integer pn;
 	private Picture picture;
 	private Code code;
+	private File file2;   //file并不是前端页面上传来的文件本身，而是文件上传过来存放在临时文件夹下面的文件
+	private String fileContentType;
+	private String fileFileName;
+
+	public File getFile() {
+		return file2;
+	}
+
+	public void setFile(File file2) {
+		this.file2 = file2;
+	}
+
+	public String getFileContentType() {
+		return fileContentType;
+	}
+
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+
+	public String getFileFileName() {
+		return fileFileName;
+	}
+
+	public void setFileFileName(String fileFileName) {
+		this.fileFileName = fileFileName;
+	}
 
 	public Map<String, Object> getResult() {
 		return result;
