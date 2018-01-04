@@ -129,7 +129,7 @@ app.controller('LeveWordManagementCtrl', ['$scope', '$modal','resource','toaster
     			"leaveWord.leaveContent" : liuyan.leaveContent,
     			"leaveWord.leaveTime" : liuyan.leaveTime,
     			"leaveWord.leaveUserId" : liuyan.leaveUserId,
-    			"leaveWord.isResponsed" : liuyan.isResponsed
+    			"leaveWord.isResponsed" : 51
     	}
     }
     $scope.delete = function (pinglun) {
