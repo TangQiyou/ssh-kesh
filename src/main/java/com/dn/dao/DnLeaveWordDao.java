@@ -25,7 +25,7 @@ public class DnLeaveWordDao extends BaseDao {
 		return 1;
 	}
 
-	public void updateLeaveword(LeaveWord leaveword) {
+	public void updateLeaveWord(LeaveWord leaveword) {
 
 		String hql = "From LeaveWord Where leaveId=" + leaveword.getLeaveId();
 		@SuppressWarnings("unchecked")
