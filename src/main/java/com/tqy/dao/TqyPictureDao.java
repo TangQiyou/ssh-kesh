@@ -50,10 +50,6 @@ public class TqyPictureDao extends BaseDao{
 		
 	}
 	
-	public void updatePicture(){
-		
-	}
-	
 	public void deletePicture(Picture picture){
 		getSession().delete(picture);
 	}

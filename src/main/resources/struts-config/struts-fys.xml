@@ -2,10 +2,30 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
-
-<struts>
-
-     
-
-   
+<struts> 
+   <package name="com.fys.actions.back" extends="struts-default,json-default" namespace="/back">
+       <action name="announcements" class="com.fys.actions.back.FysAnnouncementAction" method="getAnnouncementsByPage">
+            <result type="json">    
+                <param name="root">result</param>   
+            </result>
+       </action>
+       
+       <action name="addAnnouncement" class="com.fys.actions.back.FysAnnouncementAction" method="addAnnouncement">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="updateAnnouncement" class="com.fys.actions.back.FysAnnouncementAction" method="updateAnnouncement">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+       
+       <action name="deleteAnnouncement" class="com.fys.actions.back.FysAnnouncementAction" method="deleteAnnouncement">
+           <result type="json">    
+               <param name="root">result</param>   
+           </result>
+       </action>
+    </package>
 </struts>

@@ -71,10 +71,6 @@ public class TqyPictureService {
 		tqyPictureDao.addPicture(addPicture);
 	}
 	
-	public void updatePicture(){
-		
-	}
-	
 	public void deletePicture(Picture picture){
 		tqyPictureDao.deletePicture(picture);
 		boolean result = PictureUtil.deletePictureOnTheDisk(picture.getPicType(), picture.getPicName());

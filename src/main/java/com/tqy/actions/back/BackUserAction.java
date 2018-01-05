@@ -85,6 +85,7 @@ public class BackUserAction extends ActionSupport{
 	private Map<String, Object> result = null;
 	private Integer pn;
 	private User user;
+	
 	public Map<String, Object> getResult() {
 		return result;
 	}

@@ -117,12 +117,6 @@ public class BackPictureAction extends ActionSupport {
 			return SUCCESS;
 		}
 	}
-	
-	public void updatePicture() {
-
-	}
-
-
 
 	@Autowired
 	TqyPictureService tqyPictureService;
