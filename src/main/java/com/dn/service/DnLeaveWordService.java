@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dn.dao.DnLeaveWordDao;
+import com.tqy.bean.Announcement;
 import com.tqy.bean.LeaveWord;
 import com.tqy.bean.page.PageInfo;
 
@@ -26,4 +27,9 @@ public class DnLeaveWordService {
 		Integer integer = dnLeaveWordDao.deleteLeaveWord(leaveWord);
 		return integer == 1 ? true : false;
 	}
+	
+	public void updateLeaveWord(LeaveWord leaveWord){
+		dnLeaveWordDao.updateLeaveWord(leaveWord);
+	}
+	
 }

@@ -28,6 +28,19 @@ public class DnLeaveWordAction extends ActionSupport {
 		result = flag ? Msg.success() : Msg.fail();
 		return SUCCESS;
 	}
+	public String updateLeaveWord(){
+		try {
+			System.out.println("修改公告...");
+			dnLeaveWordService.updateLeaveWord(leaveWord);
+			result = Msg.success();
+			System.out.println("修改公告...end...");
+			return SUCCESS;
+		} catch (Exception e) {
+			result = Msg.fail();
+			return SUCCESS;
+		}
+
+	}
 
 	// No.2 这里要加@Autowired注解，自动注入Service，因此在自定义方法中不用声明即可调用
 	@Autowired
